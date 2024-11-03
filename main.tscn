@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://go68txmbxbe6"]
+
+[ext_resource type="Shader" path="res://test.gdshader" id="1_fko44"]
+[ext_resource type="Texture2D" uid="uid://bilwraxidnc3d" path="res://icon.svg" id="1_fxxuc"]
+[ext_resource type="Shader" path="res://shaders/color_abberation.gdshader" id="1_hrhj0"]
+[ext_resource type="Script" path="res://sprite2d.gd" id="3_aj5d7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1oc4f"]
+shader = ExtResource("1_hrhj0")
+shader_parameter/offset = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iko5x"]
+shader = ExtResource("1_fko44")
+shader_parameter/blue = 1.0
+
+[node name="Main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+material = SubResource("ShaderMaterial_1oc4f")
+offset_left = -144.0
+offset_top = -136.0
+offset_right = 1048.0
+offset_bottom = 520.0
+
+[node name="VSlider" type="VSlider" parent="Camera2D/CanvasLayer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = -4.0
+offset_right = 16.0
+offset_bottom = -4.0
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_iko5x")
+position = Vector2(64, 64)
+texture = ExtResource("1_fxxuc")
+script = ExtResource("3_aj5d7")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(184, 144)
+texture = ExtResource("1_fxxuc")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(528, 232)
+texture = ExtResource("1_fxxuc")
